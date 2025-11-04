@@ -42,6 +42,16 @@ CampaignType Campaign::getType() const {
   return type;
 }
 
+bool Campaign::isVictorious() const {
+  for (auto v : sites.getBounds()) {
+    auto site = sites[v];
+    if (auto villain = site.getVillain())
+      if (villain->type == VillainType::MAIN && !isDefeated(v))
+        return false;
+  }
+  return true;
+}
+
 bool Campaign::canTravelTo(Vec2 pos) const {
   return isInInfluence(pos) && !sites[pos].isEmpty();
 }
@@ -320,6 +330,7 @@ map<string, string> Campaign::getParameters() const {
     {"allies", toString(numAlly)},
     {"retired", toString(numRetired)},
     {"game_type", gameType},
+    {"is_victorious", toString(isVictorious())},
   };
 }
 

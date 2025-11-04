@@ -80,6 +80,7 @@ class Campaign {
   bool passesMaxAggressorCutOff(Vec2);
   CampaignType getType() const;
   void updateInhabitants(ContentFactory*);
+  bool isVictorious() const;
 
   map<string, string> getParameters() const;
 
