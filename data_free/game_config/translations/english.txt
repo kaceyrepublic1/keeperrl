@@ -531,7 +531,7 @@ POEM_ABOUT "{1} about {2}"
 POLYMORPH_INTO_EFFECT_DESCRIPTION "Polymorphs into {1}"
 POP_LIMIT_REACHED "population limit is reached"
 POPULATION_TRIGGER "Population"
-PRESS_TO_UNPAUSE "Press {1} to unpause."
+PRESS_TO_UNPAUSE "Game paused. Press {1} to continue your adventure!"
 SPACE_KEY "space"
 PRIORITY_TASK_HIGHLIGHT "Priority task"
 PRISONER "prisoner"
@@ -4109,12 +4109,7 @@ CAMPAIGN_HELP_TEXT "Welcome to the campaign mode! The world, which you see below
 
 
 The highlighted tribes are in your influence zone, which means that you can currently interact with them (trade, recruit, attack or be attacked). As you conquer more enemies, your influence zone will increase."
-TUTORIAL_WELCOME "Welcome to the KeeperRL tutorial!
-
-Together we will work to build a small dungeon, and assemble a military force. Nearby us lies
-a small village inhabited mostly by innocents, which we shall conquer.
-
-This should get you up to speed with the game!"
+TUTORIAL_WELCOME "Welcome to your own dungeon in KeeperRL! This tutorial will guide you through building a thriving dungeon and leading your minions to glorious conquest. Let's start your evil enterprise!"
 TUTORIAL_INTRO "Let's check out some things that you see on the map. The little wizard wearing a red robe is you, the Keeper.
 
 Remember that KeeperRL features permadeath, which means that you can't reload the game after a failure. If your Keeper dies, then the game is over, so be careful!"
