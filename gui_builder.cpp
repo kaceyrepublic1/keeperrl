@@ -922,7 +922,7 @@ SGuiElem GuiBuilder::drawVillainInfoOverlay(const VillageInfo::Village& info, bo
 SGuiElem GuiBuilder::getVillainDismissHint(optional<VillageAction> action) {
   auto lines = WL(getListBuilder, legendLineHeight);
   if (!hasController())
-    lines.addElem(WL(label, TStringId("RIGHT_CLICK_TO_CLEAR"), Renderer::smallTextSize()), legendLineHeight * 2 / 3);
+    lines.addElem(WL(label, TStringId("RIGHT_CLICK_TO_DISMISS_HINT"), Renderer::smallTextSize()), legendLineHeight * 2 / 3);
   else if (!villainsIndex)
     lines.addElem(WL(label, TStringId("LEFT_TRIGGER_TO_CLEAR"), Renderer::smallTextSize()), legendLineHeight * 2 / 3);
   else {

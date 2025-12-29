@@ -1768,6 +1768,7 @@ REVIVE_CORPSE_EFFECT_NAME "wskrzeszenie zwłok"
 RIDERS "jeźdźcy"
     "jeźdźcom" : plural,dative
 RIGHT_CLICK_TO_CLEAR "Prawy przycisk, aby wyczyścić"
+RIGHT_CLICK_TO_DISMISS_HINT "Right-click to dismiss notification"
 SCREAM "Krzyczysz!"
 SCREAMS "{1} krzyczy!"
 SCROLL_ITEM "zwój"
