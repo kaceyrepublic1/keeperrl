@@ -1246,7 +1246,7 @@ TORSO_BODY_PART "torso" "torsos" : plural
 TOUCH "You touch {1}."
 TOUCHES "{1} touches {2}."
 TRANSFER_TASK "Go to site"
-TRAVEL_COMMAND_TIP "Use the travel command while controlling a minion or team to travel to another site."
+HELP_TITLE5 "Use the travel command while controlling a minion or team to travel to another site."
 UNREALIZED_EXPERIENCE_LABEL "Unrealized experience:"
 UNRESTRICT_ALL_EQUIPMENT "Unrestrict all"
 UPGRADES_NEED_TO_BE_PLACED_IN_STORAGE "Note that upgrades need to be in placed storage before they can be added."
