@@ -1,0 +1,9 @@
+It's not possible to directly control your minions, but you can issue orders, and even take control of a whole team of minions, leading them to battle.
+
+1.  To start, create a team of minions by dragging them onto the "[new team]" button. You can drag them directly from the map, or from the minions menu. It's best to pause the game while doing this.
+
+2.  Enter control mode by clicking on the team leader in the team's menu and choosing 'Control'. You will enter a turn-based mode, where you directly control the leader, and the rest of the team follows him. The 'Stop' and 'Don't chase' commands let you change how the team follows you. You can take control over other team members by clicking on them.
+
+3.  At any point you can switch to full control over the entire team by clicking on the [Control mode] button or pressing the 'g' key. Now you can issue separate orders to every team member. This is very useful in combat.
+
+4.  To travel to another map site, create a team and enter control mode. Then open the world map by clicking on the button below the minimap. Choose your destination, and your minions will travel there automatically. Make sure the minions have mounts appropriate for their body size, as this will greatly speed up travel.
