@@ -242,7 +242,8 @@ class GuiBuilder {
     SPELL_SCHOOLS,
     ITEMS_HELP,
     SCRIPTED_HELP,
-    ENLARGED_MINIMAP
+    ENLARGED_MINIMAP,
+    TRAVELLING_HELP
   };
   optional<BottomWindowId> bottomWindow;
   string scriptedHelpId;
