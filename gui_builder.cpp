@@ -446,7 +446,7 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
-  constexpr int numBuiltinPages = 6;
+  constexpr int numBuiltinPages = 7;
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
       addScriptedButton(*elem);
@@ -463,9 +463,10 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
-  addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
-  addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
-  addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
+  addBuiltinButton(ViewId("map_legend"), TStringId("TRAVELLING_HELP_BUTTON"), BottomWindowId::TRAVELLING_HELP);
+  addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BottomWindowId::BESTIARY);
+  addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), BottomWindowId::ITEMS_HELP);
+  addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), BottomWindowId::SPELL_SCHOOLS);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
