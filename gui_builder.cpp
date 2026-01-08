@@ -466,6 +466,16 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
   addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
   addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
+  lines.addElem(WL(buttonLabelFocusable,
+      WL(getListBuilder)
+          .addElemAuto(WL(topMargin, -2, WL(viewObject, ViewId("book"))))
+          .addElemAuto(WL(label, TStringId("CONTROLS_HELP_BUTTON")))
+          .buildHorizontalList(),
+      [this]() { setCollectiveTab(CollectiveTab::KEY_MAPPING); },
+      [this, buttonCnt] { return helpIndex == buttonCnt; }
+  ));
+  ++buttonCnt;
+  lines.addSpace(5);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
