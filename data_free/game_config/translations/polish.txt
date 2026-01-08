@@ -379,6 +379,7 @@ COLOR_VARIANT_EFFECT_NAME "zmiana koloru"
     "zmiany koloru" : genitive
 COMMA "{1}, {2}"
 COMMANDS_BUTTON "Rozkazy"
+CONTROLS_HELP_BUTTON "Sterowanie"
 CONFIRM_BANISH "Czy chcesz wygnać {1:accusative} na zawsze? Wygnanie wpłynie negatywnie na morale innych sług."
 CONFIRM_BUTTON "Potwierdź"
 CONFIRM_DISASSEMBLE "Czy chcesz rozebrać {1:accusative} na części?"
