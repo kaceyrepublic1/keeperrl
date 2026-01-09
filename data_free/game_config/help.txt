@@ -1,6 +1,9 @@
+{"" {} HELP_BASIC_GAMEPLAY}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
+
+{"" {} HELP_GENERAL_TOPICS}
 {"travelling"}
 {"guard_zones" {"guard_post"} HELP_TITLE4}

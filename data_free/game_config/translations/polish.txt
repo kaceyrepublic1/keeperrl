@@ -9894,6 +9894,8 @@ HELP_TITLE1 "Korzystanie z wierzchowców"
 HELP_TITLE2 "Budynki i poziomy Z"
 HELP_TITLE3 "Obliczanie obrażeń"
 HELP_TITLE4 "Strefy wartowania"
+HELP_BASIC_GAMEPLAY "Podstawy rozgrywki"
+HELP_GENERAL_TOPICS "Tematy ogólne"
 
 FURNITURE_WATER_UNSEENMESSAGE "Słyszysz plusk wody."
 DIGGING_WARNING "Wkop się w głąb góry i zacznij budować lochy."
