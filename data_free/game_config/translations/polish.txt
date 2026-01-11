@@ -9889,6 +9889,7 @@ ENEMIES_SOKOBAN_NAME "Sokoban"
 ENEMIES_ADOXIE_FEET_NAME "Starożytny grobowiec"
 ENEMIES_WIZARD_TOWER_NAME "Wieża czarodzieja"
 
+HELP_GAMEPLAY "Rozgrywka"
 HELP_TITLE "Pojmanie więźniów"
 HELP_TITLE1 "Korzystanie z wierzchowców"
 HELP_TITLE2 "Budynki i poziomy Z"
