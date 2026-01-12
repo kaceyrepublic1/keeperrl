@@ -1,6 +1,14 @@
+{"", {""} GAME_BASICS_HEADER}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
-{"travelling"}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
+
+{"", {""} ENCYCLOPEDIA_HEADER}
+{"_bestiary" {"special_bmbw"} BESTIARY_HELP_BUTTON}
+{"_items_help" {"scroll"} ITEMS_HELP_BUTTON}
+{"_spell_schools" {"book"} SPELL_SCHOOLS_HELP_BUTTON}
+
+{"", {""} ADVANCED_TOPICS_HEADER}
+{"travelling" {"map_icon"} TRAVELLING_HELP_TITLE}

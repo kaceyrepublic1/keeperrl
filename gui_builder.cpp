@@ -427,49 +427,41 @@ SGuiElem GuiBuilder::drawBuildings(const vector<CollectiveInfo::Button>& buttons
 SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
   int buttonCnt = 0;
-  auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
-    lines.addElem(WL(buttonLabelFocusable,
-        WL(getListBuilder)
-            .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
-            .addSpace(5)
-            .addElemAuto(WL(label, *info.title))
-            .buildHorizontalList(),
-        [this, scriptedId = info.scriptedId]() {
-          scriptedUIState.scrollPos[0].reset();
-          if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId)
-            bottomWindow = none;
-          else
-            openScriptedHelp(scriptedId);
-        },
-        [this, buttonCnt] { return helpIndex == buttonCnt; }
-    ));
-    ++buttonCnt;
-    lines.addSpace(5);
-  };
-  constexpr int numBuiltinPages = 6;
-  for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
-  lines.addSpace(15);
-  auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
-    lines.addElem(WL(buttonLabelFocusable,
-        WL(getListBuilder)
-            .addElemAuto(WL(topMargin, -2, WL(viewObject, viewId)))
-            .addElemAuto(WL(label, name))
-            .buildHorizontalList(),
-        [this, windowId]() { toggleBottomWindow(windowId); },
-        [this, buttonCnt] { return helpIndex == buttonCnt; }
-    ));
-    ++buttonCnt;
-    lines.addSpace(5);
-  };
-  addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
-  addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
-  addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
-  lines.addSpace(10);
-  for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
+  for (auto& elem : info.scriptedHelp) {
+    if (elem.title && !elem.viewId) {
+      lines.addSpace(10);
+      lines.addElem(WL(label, *elem.title, Color::YELLOW));
+      lines.addSpace(5);
+    } else if (elem.title && elem.viewId) {
+      function<void()> callback;
+      if (elem.scriptedId == "_bestiary") {
+        callback = [this] { toggleBottomWindow(BESTIARY); };
+      } else if (elem.scriptedId == "_items_help") {
+        callback = [this] { toggleBottomWindow(ITEMS_HELP); };
+      } else if (elem.scriptedId == "_spell_schools") {
+        callback = [this] { toggleBottomWindow(SPELL_SCHOOLS); };
+      } else {
+        callback = [this, scriptedId = elem.scriptedId]() {
+            scriptedUIState.scrollPos[0].reset();
+            if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId)
+              bottomWindow = none;
+            else
+              openScriptedHelp(scriptedId);
+        };
+      }
+      lines.addElem(WL(buttonLabelFocusable,
+          WL(getListBuilder)
+              .addElemAuto(WL(topMargin, -2, WL(viewObject, *elem.viewId)))
+              .addSpace(5)
+              .addElemAuto(WL(label, *elem.title))
+              .buildHorizontalList(),
+          callback,
+          [this, buttonCnt] { return helpIndex == buttonCnt; }
+      ));
+      ++buttonCnt;
+      lines.addSpace(5);
+    }
+  }
   return WL(stack, makeVec(
       WL(keyHandler, [this] {
         closeOverlayWindowsAndClearButton();
@@ -485,14 +477,14 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
             if (!helpIndex) {
               closeOverlayWindowsAndClearButton();
               helpIndex = 0;
-            } else
+            } else if (buttonCnt > 0)
               helpIndex = (*helpIndex + 1) % buttonCnt;
           }, {gui.getKey(C_BUILDINGS_DOWN)}, true),
           WL(keyHandler, [this, buttonCnt] {
             if (!helpIndex) {
               closeOverlayWindowsAndClearButton();
               helpIndex = 0;
-            } else
+            } else if (buttonCnt > 0)
               helpIndex = (*helpIndex - 1 + buttonCnt) % buttonCnt;
           }, {gui.getKey(C_BUILDINGS_UP)}, true)
       ), [this] { return collectiveTab == CollectiveTab::KEY_MAPPING; })
