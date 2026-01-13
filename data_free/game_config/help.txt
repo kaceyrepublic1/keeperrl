@@ -1,6 +1,9 @@
+{"", {""} UI_HEADERS}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
+{"", {""} GAMEPLAY_HEADERS}
 {"damage" {"sword"} HELP_TITLE3}
 {"travelling"}
+{"", {""} ADVANCED_HEADERS}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
