@@ -9893,6 +9893,7 @@ HELP_TITLE "Pojmanie więźniów"
 HELP_TITLE1 "Korzystanie z wierzchowców"
 HELP_TITLE2 "Budynki i poziomy Z"
 HELP_TITLE3 "Obliczanie obrażeń"
+HELP_TRAVELLING "Podróżowanie"
 HELP_TITLE4 "Strefy wartowania"
 
 FURNITURE_WATER_UNSEENMESSAGE "Słyszysz plusk wody."
