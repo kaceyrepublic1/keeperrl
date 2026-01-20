@@ -1293,9 +1293,26 @@ class Test {
       ret += x;
     CHECK(ret == 0);
   }
+
+  void testHelpMenuFallbacks() {
+    GameInfo info;
+    info.scriptedHelp.push_back(make_shared<ScriptedHelpInfo>(ScriptedHelpInfo{"test_id1", std::nullopt, std::nullopt}));
+    info.scriptedHelp.push_back(make_shared<ScriptedHelpInfo>(ScriptedHelpInfo{"test_id2", ViewId("book"), std::nullopt}));
+    info.scriptedHelp.push_back(make_shared<ScriptedHelpInfo>(ScriptedHelpInfo{"test_id3", std::nullopt, TString("Test Title")}));
+    info.scriptedHelp.push_back(make_shared<ScriptedHelpInfo>(ScriptedHelpInfo{"", std::nullopt, TString("Header")}));
+
+    Renderer renderer(nullptr, nullptr, false);
+    GuiFactory guiFactory(renderer, nullptr, nullptr, nullptr, nullptr);
+    GuiBuilder guiBuilder(renderer, guiFactory, nullptr, nullptr, {});
+
+    SGuiElem helpMenu = guiBuilder.drawKeeperHelp(info);
+
+    CHECK(helpMenu);
+  }
 };
 
 void testAll() {
+  Test().testHelpMenuFallbacks();
   Test().testStringConvertion();
   Test().testTimeQueue();
   Test().testRectangleIterator();

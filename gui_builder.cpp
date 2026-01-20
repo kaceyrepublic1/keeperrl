@@ -446,10 +446,28 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
+  auto handleHelpElement = [&](const ScriptedHelpInfo& elem) {
+    if (elem.scriptedId.empty()) {
+      if (elem.title) {
+          lines.addElem(WL(label, *elem.title, Color::YELLOW));
+          lines.addSpace(5);
+      }
+    } else {
+        ScriptedHelpInfo buttonInfo = elem;
+        if (!buttonInfo.viewId) {
+            buttonInfo.viewId = ViewId("book");
+        }
+        if (!buttonInfo.title) {
+            buttonInfo.title = TString(buttonInfo.scriptedId);
+        }
+        addScriptedButton(buttonInfo);
+    }
+  };
+
   constexpr int numBuiltinPages = 6;
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
+    if (elem.index() < numBuiltinPages)
+      handleHelpElement(*elem);
   lines.addSpace(15);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
     lines.addElem(WL(buttonLabelFocusable,
@@ -468,8 +486,8 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
+    if (elem.index() >= numBuiltinPages)
+      handleHelpElement(*elem);
   return WL(stack, makeVec(
       WL(keyHandler, [this] {
         closeOverlayWindowsAndClearButton();
