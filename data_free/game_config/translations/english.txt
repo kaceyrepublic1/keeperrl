@@ -4222,3 +4222,5 @@ This patch adds a playable Witch character, specializing in casting curses, snat
 
 If this is your first time playing KeeperRL, remember to start with the tutorial!
 "
+
+HELP_TRAVELLING_HEADER "--- Travelling ---"
