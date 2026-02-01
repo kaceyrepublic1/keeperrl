@@ -426,6 +426,8 @@ SGuiElem GuiBuilder::drawBuildings(const vector<CollectiveInfo::Button>& buttons
 
 SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
+  lines.addElem(WL(label, TStringId("HELP_MECHANICS_HEADER"), Color::YELLOW));
+  lines.addSpace(5);
   int buttonCnt = 0;
   auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
     lines.addElem(WL(buttonLabelFocusable,
@@ -451,6 +453,8 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
       addScriptedButton(*elem);
   lines.addSpace(15);
+  lines.addElem(WL(label, TStringId("HELP_ENCYCLOPEDIA_HEADER"), Color::YELLOW));
+  lines.addSpace(5);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
     lines.addElem(WL(buttonLabelFocusable,
         WL(getListBuilder)
