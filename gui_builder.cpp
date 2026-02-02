@@ -428,6 +428,11 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
   int buttonCnt = 0;
   auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
+    if (info.scriptedId.empty() && !!info.viewId && info.viewId->data()[0] == '\0' && !!info.title) {
+      lines.addElem(WL(label, *info.title, Color::YELLOW));
+      lines.addSpace(5);
+      return;
+    }
     lines.addElem(WL(buttonLabelFocusable,
         WL(getListBuilder)
             .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
@@ -446,11 +451,13 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
-  constexpr int numBuiltinPages = 6;
+  constexpr int numBuiltinPages = 7;
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
       addScriptedButton(*elem);
   lines.addSpace(15);
+  lines.addElem(WL(label, TStringId("HELP_HEADER_ENCYCLOPEDIA"), Color::YELLOW));
+  lines.addSpace(5);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
     lines.addElem(WL(buttonLabelFocusable,
         WL(getListBuilder)
