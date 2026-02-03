@@ -427,49 +427,36 @@ SGuiElem GuiBuilder::drawBuildings(const vector<CollectiveInfo::Button>& buttons
 SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
   int buttonCnt = 0;
-  auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
-    lines.addElem(WL(buttonLabelFocusable,
-        WL(getListBuilder)
-            .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
-            .addSpace(5)
-            .addElemAuto(WL(label, *info.title))
-            .buildHorizontalList(),
-        [this, scriptedId = info.scriptedId]() {
-          scriptedUIState.scrollPos[0].reset();
-          if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId)
-            bottomWindow = none;
-          else
-            openScriptedHelp(scriptedId);
-        },
-        [this, buttonCnt] { return helpIndex == buttonCnt; }
-    ));
-    ++buttonCnt;
-    lines.addSpace(5);
-  };
-  constexpr int numBuiltinPages = 6;
-  for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
-  lines.addSpace(15);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
     lines.addElem(WL(buttonLabelFocusable,
-        WL(getListBuilder)
-            .addElemAuto(WL(topMargin, -2, WL(viewObject, viewId)))
-            .addElemAuto(WL(label, name))
-            .buildHorizontalList(),
+        WL(getListBuilder).addElemAuto(WL(topMargin, -2, WL(viewObject, viewId))).addSpace(5).addElemAuto(WL(label, name)).buildHorizontalList(),
         [this, windowId]() { toggleBottomWindow(windowId); },
         [this, buttonCnt] { return helpIndex == buttonCnt; }
     ));
-    ++buttonCnt;
-    lines.addSpace(5);
+    ++buttonCnt; lines.addSpace(5);
   };
-  addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
-  addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
-  addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
-  lines.addSpace(10);
+  auto addScriptedButton = [this, &lines, &buttonCnt, &addBuiltinButton] (const ScriptedHelpInfo& info) {
+    if (info.scriptedId.empty() && !info.viewId && !!info.title) {
+       lines.addElem(WL(label, *info.title, Color::YELLOW));
+       lines.addSpace(5); return;
+    }
+    if (info.scriptedId == "_bestiary") { addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY); return; }
+    if (info.scriptedId == "_items") { addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP); return; }
+    if (info.scriptedId == "_spells") { addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS); return; }
+    if (!info.viewId || !info.title) return;
+    lines.addElem(WL(buttonLabelFocusable,
+        WL(getListBuilder).addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId))).addSpace(5).addElemAuto(WL(label, *info.title)).buildHorizontalList(),
+        [this, scriptedId = info.scriptedId]() {
+          scriptedUIState.scrollPos[0].reset();
+          if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId) bottomWindow = none;
+          else openScriptedHelp(scriptedId);
+        },
+        [this, buttonCnt] { return helpIndex == buttonCnt; }
+    ));
+    ++buttonCnt; lines.addSpace(5);
+  };
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
+    addScriptedButton(*elem);
   return WL(stack, makeVec(
       WL(keyHandler, [this] {
         closeOverlayWindowsAndClearButton();

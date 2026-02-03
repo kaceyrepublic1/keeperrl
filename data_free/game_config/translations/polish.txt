@@ -10280,3 +10280,6 @@ Ta aktualizacja dodaje grywalną postać Wiedźmy, wyspecjalizowaną w rzucaniu 
 
 Jeśli grasz w KeeperRL po raz pierwszy, pamiętaj, aby rozpocząć od samouczka!
 "
+HELP_HEADER_HOW_TO "PORADNIKI"
+HELP_HEADER_ENCYCLOPEDIA "ENCYKLOPEDIA"
+HELP_TITLE5 "Podróżowanie"
