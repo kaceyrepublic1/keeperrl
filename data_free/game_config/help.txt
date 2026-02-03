@@ -1,6 +1,11 @@
+{"" {""} HELP_HEADER_HOW_TO}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
-{"travelling"}
+{"travelling" {"wolf"} HELP_TITLE5}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
+{"" {""} HELP_HEADER_ENCYCLOPEDIA}
+{"_bestiary" {"special_bmbw"} BESTIARY_HELP_BUTTON}
+{"_items" {"scroll"} ITEMS_HELP_BUTTON}
+{"_spells" {"book"} SPELL_SCHOOLS_HELP_BUTTON}
