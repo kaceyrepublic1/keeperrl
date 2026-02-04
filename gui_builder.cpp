@@ -428,27 +428,34 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
   int buttonCnt = 0;
   auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
-    lines.addElem(WL(buttonLabelFocusable,
-        WL(getListBuilder)
-            .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
-            .addSpace(5)
-            .addElemAuto(WL(label, *info.title))
-            .buildHorizontalList(),
-        [this, scriptedId = info.scriptedId]() {
-          scriptedUIState.scrollPos[0].reset();
-          if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId)
-            bottomWindow = none;
-          else
-            openScriptedHelp(scriptedId);
-        },
-        [this, buttonCnt] { return helpIndex == buttonCnt; }
-    ));
-    ++buttonCnt;
-    lines.addSpace(5);
+    if (info.scriptedId.empty() && !!info.title) {
+      lines.addElem(WL(label, *info.title, Color::YELLOW));
+      lines.addSpace(5);
+      return;
+    }
+    if (!!info.viewId && !!info.title) {
+      lines.addElem(WL(buttonLabelFocusable,
+          WL(getListBuilder)
+              .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
+              .addSpace(5)
+              .addElemAuto(WL(label, *info.title))
+              .buildHorizontalList(),
+          [this, scriptedId = info.scriptedId]() {
+            scriptedUIState.scrollPos[0].reset();
+            if (bottomWindow == SCRIPTED_HELP && scriptedHelpId == scriptedId)
+              bottomWindow = none;
+            else
+              openScriptedHelp(scriptedId);
+          },
+          [this, buttonCnt] { return helpIndex == buttonCnt; }
+      ));
+      ++buttonCnt;
+      lines.addSpace(5);
+    }
   };
-  constexpr int numBuiltinPages = 6;
+  constexpr int numBuiltinPages = 8;
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
+    if (elem.index() < numBuiltinPages)
       addScriptedButton(*elem);
   lines.addSpace(15);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
@@ -468,7 +475,7 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
+    if (elem.index() >= numBuiltinPages)
       addScriptedButton(*elem);
   return WL(stack, makeVec(
       WL(keyHandler, [this] {
