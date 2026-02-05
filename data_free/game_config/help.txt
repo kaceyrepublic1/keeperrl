@@ -1,6 +1,7 @@
+{"", {""} HELP_TOPICS_HEADER}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
-{"travelling"}
+{"travelling" {"wolf"} HELP_TITLE5}
 {"guard_zones" {"guard_post"} HELP_TITLE4}

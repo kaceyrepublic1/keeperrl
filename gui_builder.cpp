@@ -428,6 +428,15 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   auto lines = WL(getListBuilder, legendLineHeight);
   int buttonCnt = 0;
   auto addScriptedButton = [this, &lines, &buttonCnt] (const ScriptedHelpInfo& info) {
+    if (info.scriptedId.empty()) {
+      if (!!info.title) {
+        lines.addElem(WL(label, *info.title, Color::YELLOW));
+        lines.addSpace(5);
+      }
+      return;
+    }
+    if (!info.viewId || !info.title)
+      return;
     lines.addElem(WL(buttonLabelFocusable,
         WL(getListBuilder)
             .addElemAuto(WL(topMargin, -2, WL(viewObject, *info.viewId)))
@@ -446,9 +455,9 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
-  constexpr int numBuiltinPages = 6;
+  constexpr int numBuiltinPages = 7;
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
+    if (elem.index() < numBuiltinPages)
       addScriptedButton(*elem);
   lines.addSpace(15);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
@@ -463,12 +472,14 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
+  lines.addElem(WL(label, TStringId("HELP_ENCYCLOPEDIA_HEADER"), Color::YELLOW));
+  lines.addSpace(5);
   addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
   addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
   addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
+    if (elem.index() >= numBuiltinPages)
       addScriptedButton(*elem);
   return WL(stack, makeVec(
       WL(keyHandler, [this] {
