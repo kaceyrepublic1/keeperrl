@@ -10146,7 +10146,7 @@ TEXT138 "3. Przydziel wierzchowca jeźdźcowi. Zrobisz to w ekwipunku sługi. Mo
 TEXT139 "Pamiętaj, że jeździec może dosiadać tylko wierzchowca odpowiedniego rozmiaru. Duże istoty mogą dosiąść duże i olbrzymie wierzchowce, a średnie i małe istoty tylko takie, które są dokładnie ich rozmiaru. Przykładowo większość ludzi dosiądzie koni i smoków, gobliny — wilków, a chochliki — nietoperzy i królików."
 TEXT140 "4. Teraz jeździec zawsze dosiądzie swego wierzchowca, wychodząc z bazy. W trybie turowym możesz zrobić to ręcznie, naciskając „m”, lub kliknąć prawym na wierzchowcu i wybrać „dosiądź”."
 TEXT141 "W zależności od ustawień twojej rozgrywki, większość wrogów i sojuszników prawdopodobnie znajduje się daleko od twojej rodzinnej siedziby."
-TEXT142 "TBF"
+TEXT142 "Aby udać się do innej lokacji, otwórz mapę świata przyciskiem pod minimapą, wybierz cel znajdujący się w twojej strefie wpływów i wybierz „podróżuj”. Musisz być w trybie kontroli nad Strażnikiem lub drużyną, aby wykonać tę czynność."
 TEXT143 "Ilość obrażeń, jakie istota otrzymuje w walce, zależy od jej wartości obrony, wartości ataku przeciwnika i pewnych modyfikatorów. Różne ataki korzystają z różnych atrybutów bazowych: większość walki wręcz opiera się na atrybucie obrażeń, ataki dystansowe na obrażeniach dystansowych, a ataki magiczne na obrażeniach magicznych."
 TEXT144 "Po ustaleniu wartości ataku stosujemy specjalne premie, np. niektóre istoty mają wyższy atak po pijanemu lub przeciw konkretnym wrogom (np. nieumarłym). Te premie są zawsze wymienione w opisie istoty."
 TEXT145 "Ofiara korzysta z atrybutu obrony jako podstawy i podobnie stosuje swoje premie. Następnie mnożymy lub dzielimy ją przez 1,3, jeśli istota jest odporna lub wrażliwa na dany rodzaj ataku (np. odporność na magię podnosi obronę o 30% przeciw atakom magicznym)."
@@ -10280,3 +10280,6 @@ Ta aktualizacja dodaje grywalną postać Wiedźmy, wyspecjalizowaną w rzucaniu 
 
 Jeśli grasz w KeeperRL po raz pierwszy, pamiętaj, aby rozpocząć od samouczka!
 "
+HELP_TITLE5 "Podróżowanie"
+HELP_TOPICS_HEADER "Tematy pomocy"
+HELP_ENCYCLOPEDIA_HEADER "Encyklopedia"
