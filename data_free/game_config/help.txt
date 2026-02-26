@@ -1,6 +1,8 @@
+{"gameplay_header" {} HELP_GAMEPLAY}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
-{"travelling" {"adventurer"} HELP_TITLE5}
+{"travelling" {"horse"} HELP_TITLE5}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
+{"quick_start" {"bookcase_wood"} HELP_QUICK_START}

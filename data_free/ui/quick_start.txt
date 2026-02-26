@@ -1,0 +1,24 @@
+
+Def P(Text) Paragraph(500, Text) End
+Def H(Text) Label(Text, ColorId YELLOW) End
+
+MiniWindow(Scrolling(MarginRight(30, MarginLeft(30,
+  Vertical {
+    Horizontal{ViewId(1, {"bookcase_wood"}) Width 10 {} Label(HELP_QUICK_START)}
+    Height 30 {}
+    H(QUICK_START_HEADER_1)
+    P(QUICK_START_TEXT_1)
+    Height 15 {}
+    H(QUICK_START_HEADER_2)
+    P(QUICK_START_TEXT_2)
+    Height 15 {}
+    H(QUICK_START_HEADER_3)
+    P(QUICK_START_TEXT_3)
+    Height 15 {}
+    H(QUICK_START_HEADER_4)
+    P(QUICK_START_TEXT_4)
+    Height 15 {}
+    H(QUICK_START_HEADER_5)
+    P(QUICK_START_TEXT_5)
+  }
+))))
