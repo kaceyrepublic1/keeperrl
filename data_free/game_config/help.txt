@@ -1,3 +1,4 @@
+{"gameplay_header" {} HELP_GAMEPLAY}
 {"prisoners" {"prisoner"} HELP_TITLE}
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}

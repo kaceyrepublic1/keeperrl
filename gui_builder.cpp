@@ -448,8 +448,15 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   };
   constexpr int numBuiltinPages = 6;
   for (auto elem : Iter(info.scriptedHelp))
-    if (elem.index() < numBuiltinPages && !!elem->viewId && !!elem->title)
-      addScriptedButton(*elem);
+    if (elem.index() < numBuiltinPages) {
+      if (!!elem->viewId && !!elem->title)
+        addScriptedButton(*elem);
+      else if (!!elem->title) {
+        lines.addSpace(10);
+        lines.addElem(WL(label, *elem->title, Color::YELLOW));
+        lines.addSpace(10);
+      }
+    }
   lines.addSpace(15);
   auto addBuiltinButton = [this, &lines, &buttonCnt] (ViewId viewId, TStringId name, BottomWindowId windowId) {
     lines.addElem(WL(buttonLabelFocusable,
