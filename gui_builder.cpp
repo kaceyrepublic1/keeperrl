@@ -446,7 +446,7 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
     ++buttonCnt;
     lines.addSpace(5);
   };
-  constexpr int numBuiltinPages = 6;
+  constexpr int numBuiltinPages = 7;
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() < numBuiltinPages) {
       if (!!elem->viewId && !!elem->title)
@@ -473,6 +473,7 @@ SGuiElem GuiBuilder::drawKeeperHelp(const GameInfo& info) {
   addBuiltinButton(ViewId("special_bmbw"), TStringId("BESTIARY_HELP_BUTTON"), BESTIARY);
   addBuiltinButton(ViewId("scroll"), TStringId("ITEMS_HELP_BUTTON"), ITEMS_HELP);
   addBuiltinButton(ViewId("book"), TStringId("SPELL_SCHOOLS_HELP_BUTTON"), SPELL_SCHOOLS);
+  addBuiltinButton(ViewId("imp"), TStringId("IMMIGRATION_TOPIC"), IMMIGRATION_HELP);
   lines.addSpace(10);
   for (auto elem : Iter(info.scriptedHelp))
     if (elem.index() >= numBuiltinPages && !!elem->viewId && !!elem->title)
