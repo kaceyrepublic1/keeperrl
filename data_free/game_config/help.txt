@@ -3,7 +3,7 @@
 {"steed" {"horse"} HELP_TITLE1}
 {"buildings" {"castle_wall"} HELP_TITLE2}
 {"damage" {"sword"} HELP_TITLE3}
-{"travelling"}
+{"travelling" {"wolf"} TEXT21}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
 
 {title: "REFERENCE_HEADER"}
