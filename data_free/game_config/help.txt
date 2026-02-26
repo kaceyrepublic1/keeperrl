@@ -5,3 +5,4 @@
 {"damage" {"sword"} HELP_TITLE3}
 {"travelling" {"horse"} HELP_TITLE5}
 {"guard_zones" {"guard_post"} HELP_TITLE4}
+{"quick_start" {"bookcase_wood"} HELP_QUICK_START}
